@@ -1,13 +1,14 @@
-idf_component_register(SRCS "i2c_lcd_pcf8574.c"
-                    INCLUDE_DIRS "include"
-                    REQUIRES "driver")
-
 # Get the latest Git tag
 execute_process(
     COMMAND git describe --tags --abbrev=0
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     OUTPUT_VARIABLE APP_VERSION
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# Pass the version to the compiler
-add_definitions(-DAPP_VERSION=\"${APP_VERSION}\")
+idf_component_register(SRCS "i2c_lcd_pcf8574.c"
+                    INCLUDE_DIRS "include"
+                    REQUIRES "driver")
+                    
+# Add the version definition to the build
+set_property(TARGET ${COMPONENT_LIB} APPEND PROPERTY COMPILE_DEFINITIONS APP_VERSION=\"${APP_VERSION}\")

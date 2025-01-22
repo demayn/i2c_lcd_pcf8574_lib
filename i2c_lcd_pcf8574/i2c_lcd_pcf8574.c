@@ -6,7 +6,7 @@
 #include "esp_task.h"
 
 #ifndef APP_VERSION
-#define APP_VERSION "0.0.0"
+#define APP_VERSION "unknown"
 #endif
 
 /// @brief copies and initializes struct data
