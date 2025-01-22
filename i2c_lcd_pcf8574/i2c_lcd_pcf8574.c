@@ -5,12 +5,17 @@
 #include "esp_check.h"
 #include "esp_task.h"
 
+#ifndef APP_VERSION
+#define APP_VERSION "0.0.0"
+#endif
+
 /// @brief copies and initializes struct data
 /// @param lcd the lcd handle
 /// @param i2c_addr pcf 8574 i2c address (per default 0x27)
 /// @param bus_hdl bus handle of the esp32 i2c driver
 void lcd_init(i2c_lcd_pcf8574_handle_t *lcd, uint8_t i2c_addr, i2c_master_bus_handle_t bus_hdl)
 {
+    ESP_LOGI(TAG, APP_VERSION);
     lcd->i2c_addr = i2c_addr;
     lcd->backlight = true;                 // sometimes not supported (PCF5874 P3 is NC on some modules)
     lcd->entrymode = ENTRYMODE_LEFT2RIGHT; // Init the LCD with an internal reset
