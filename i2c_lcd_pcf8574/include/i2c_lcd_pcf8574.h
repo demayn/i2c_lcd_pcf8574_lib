@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <string.h>
 #include "esp_err.h"
 #include "driver/i2c_master.h"
 
@@ -25,6 +26,10 @@ extern "C"
         i2c_master_dev_handle_t dev_hdl;
         i2c_master_bus_handle_t bus_hdl;
     } i2c_lcd_pcf8574_handle_t;
+
+    /// @brief print the curent version od the library
+    /// @param buf char pointer of the buffer to write the version to
+    void i2c_lcd_pcf8574_version(char buf[6]);
 
     // Initialize the LCD
     void lcd_init(i2c_lcd_pcf8574_handle_t *lcd, uint8_t i2c_addr, i2c_master_bus_handle_t bus_hdl);

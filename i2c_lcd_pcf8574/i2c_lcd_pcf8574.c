@@ -6,8 +6,13 @@
 #include "esp_task.h"
 
 #ifndef APP_VERSION
-#define APP_VERSION "unknown"
+#define APP_VERSION "x.x.x"
 #endif
+
+void i2c_lcd_pcf8574_version(char buf[6])
+{
+    strcpy(buf, APP_VERSION);
+}
 
 /// @brief copies and initializes struct data
 /// @param lcd the lcd handle

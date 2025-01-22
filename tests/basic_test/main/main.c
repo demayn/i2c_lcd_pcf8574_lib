@@ -57,9 +57,20 @@ void app_main(void)
     vTaskDelay(1);
     lcd_set_cursor(&lcd, 0, 0);
     vTaskDelay(1);
-    lcd_print(&lcd, "ESP32 LCD Test!");
-    vTaskDelay(1);
+    lcd_print(&lcd, "LCD Shenanigans");
     lcd_set_cursor(&lcd, 0, 1);
+    vTaskDelay(1);
+    lcd_print(&lcd, "Lib Ver:");
+    vTaskDelay(1);
+    char lib_ver[6];
+    i2c_lcd_pcf8574_version(lib_ver);
+    lcd_set_cursor(&lcd, 10, 1);
+    vTaskDelay(1);
+    lcd_print(&lcd, lib_ver);
+
+    vTaskDelay(1);
+    #if LCD_ROWS > 2
+    lcd_set_cursor(&lcd, 0, 2);
     vTaskDelay(1);
     lcd_print(&lcd, "Counter: ");
 
@@ -69,7 +80,7 @@ void app_main(void)
         vTaskDelay(100 / portTICK_PERIOD_MS); // Wait for 1 second
 
         // Update the counter on the LCD
-        lcd_set_cursor(&lcd, 10, 1);
+        lcd_set_cursor(&lcd, 10, 2);
         char buffer[12];
         snprintf(buffer, sizeof(buffer), "%5d", counter);
         lcd_print(&lcd, buffer);
@@ -80,4 +91,5 @@ void app_main(void)
         if (counter > 99999)
             counter = 0;
     }
+    #endif
 }
