@@ -5,8 +5,8 @@
 #include "esp_check.h"
 #include "esp_task.h"
 
-#ifndef APP_VERSION
-#define APP_VERSION "x.x.x"
+#ifndef LIB_VERSION
+#define LIB_VERSION "x.x.x"
 #endif
 
 void i2c_lcd_pcf8574_version(char buf[6])
@@ -20,7 +20,7 @@ void i2c_lcd_pcf8574_version(char buf[6])
 /// @param bus_hdl bus handle of the esp32 i2c driver
 void lcd_init(i2c_lcd_pcf8574_handle_t *lcd, uint8_t i2c_addr, i2c_master_bus_handle_t bus_hdl)
 {
-    ESP_LOGI(TAG, APP_VERSION);
+    ESP_LOGI(TAG, LIB_VERSION);
     lcd->i2c_addr = i2c_addr;
     lcd->backlight = true;                 // sometimes not supported (PCF5874 P3 is NC on some modules)
     lcd->entrymode = ENTRYMODE_LEFT2RIGHT; // Init the LCD with an internal reset
@@ -217,7 +217,7 @@ void lcd_set_backlight(i2c_lcd_pcf8574_handle_t *lcd, bool backlight_on)
     i2c_master_transmit(lcd->dev_hdl, &buf, 1, -1);
 }
 
-/// @brief save a custom acarcter to CGRAM
+/// @brief save a custom character to CGRAM
 /// @param lcd display handle
 /// @param index 0-7; index of the new character
 /// @param charmap 5*8 array display data (right (LSB) to left (MSB), top to bottom (Byte order))
