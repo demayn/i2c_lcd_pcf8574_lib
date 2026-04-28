@@ -11,7 +11,7 @@
 
 void i2c_lcd_pcf8574_version(char buf[6])
 {
-    strcpy(buf, APP_VERSION);
+    strcpy(buf, LIB_VERSION);
 }
 
 /// @brief copies and initializes struct data
